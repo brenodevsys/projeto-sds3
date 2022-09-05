@@ -1,7 +1,8 @@
-package com.devbreno.brenovendas;
+package com.devbreno.brenovendas.controllers;
 
 import com.devbreno.brenovendas.dto.SellerDTO;
 import com.devbreno.brenovendas.services.SellerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,18 +13,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/sellers")
+@RequiredArgsConstructor
 public class SellerController {
 
-    @Autowired
-    public SellerService sellerService;
+
+    private final SellerService sellerService;
 
     @GetMapping
     public ResponseEntity<List<SellerDTO>> findAll () {
-        List<SellerDTO> list = sellerService.findAll();
-        return ResponseEntity.ok(list);
+
+        return ResponseEntity.ok(sellerService.findAll());
     }
-
-
 
 
 }
